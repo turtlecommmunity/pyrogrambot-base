@@ -17,4 +17,4 @@ If you want to use this repo as the base of your bot, then you have to follow so
 # Support
 For any queries or confusions you can join us on telegram from below
 
-<a href="https://t.me/turtlecommunitytg"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
+<a href="https://t.me/thunderuserbotchat"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
