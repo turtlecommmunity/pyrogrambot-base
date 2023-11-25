@@ -9,7 +9,7 @@ from pyrogram.types import (
 
 HELPABLE: list[str] = []
 
-for modules in glob.glob("whiterkang/plugins/*.py"):
+for modules in glob.glob("Turtlecommunity/plugins/*.py"):
     imported_module = import_module((modules)[:-3].replace("/", "."))
     if hasattr(imported_module, "__help__"):
         HELPABLE.append((modules.replace("/", ".")).split(".")[-2])
