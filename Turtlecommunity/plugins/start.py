@@ -45,7 +45,7 @@ async def start(c: Client, m: Message | CallbackQuery):
         )
 
 @Client.on_callback_query(filters.regex(pattern=r"about"))
-async def about_menu(c: WhiterX, cb: CallbackQuery):
+async def about_menu(c: Client, cb: CallbackQuery):
     keyboard = [
         [
             InlineKeyboardButton(await tld(cb.message.chat.id, "BACK_BNT"), "start_back"),
