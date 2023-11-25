@@ -24,9 +24,11 @@ plugins = dict(
 print("Successfully deployed!")
 print("Base For This Bot Belongs To --> https://github.com/turtlecommmunity/pyrogram-base")
 Client(
-    "Turtle",
+    "yDixx",
     bot_token=BOT_TOKEN,
     api_id=APP_ID,
     api_hash=API_HASH,
+    workers=24,
+    in_memory=True,
     plugins=plugins
 ).run()
