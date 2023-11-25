@@ -48,7 +48,7 @@ async def start(c: Client, m: Message | CallbackQuery):
 async def about_menu(c: Client, cb: CallbackQuery):
     keyboard = [
         [
-            InlineKeyboardButton(await tld(cb.message.chat.id, "BACK_BNT"), "start_back"),
+            InlineKeyboardButton("⬅️ Voltar", "start_back"),
         ],
     ]
     text = ("<b>— yDixx</b>\n<b>Versão: <i>{}</i>").format("1.0.1")
