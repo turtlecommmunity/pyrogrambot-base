@@ -46,8 +46,7 @@ def save_grupo(user_id, chat_id, chat_title):
 @Client.on_message(filters.command(["quiz"], prefixes=["?", "/"]))
 async def quiz(c: Client, m: Message):
     if m.chat.type != ChatType.PRIVATE:
-        chat_data = c.get_chat_history(m.chat.id)
-        if not chat_data.get('quiz_in_progress', False):
+        try:
             with open('quiz.json', 'r', encoding='utf-8') as file:
                 questions = json.load(file)
 
@@ -56,42 +55,38 @@ async def quiz(c: Client, m: Message):
             chat_data['quiz_in_progress'] = True
 
             await m.reply(f"\n✏️ *Pergunta:* `{question['pergunta']}`\n")
-        else:
-            await m.reply_text("Já tem um quiz em andamento.")
+        except Exception:
+            await m.reply_text("Erro")
     else:
         await m.reply_text("Só em grupos.")
 
 async def ask_another_question(c: Client, m: Message) -> None:
-    chat_data = c.get_chat_history(m.chat.id)
-    if chat_data.get('quiz_in_progress', False):
-        with open('quiz.json', 'r', encoding='utf-8') as file:
-            questions = json.load(file)
+    with open('quiz.json', 'r', encoding='utf-8') as file:
+        questions = json.load(file)
 
         question = random.choice(questions)
         chat_data['current_question'] = {'resposta_correta': question['resposta']}
         await m.reply_text(f"\n✏️ *Pergunta:* `{question['pergunta']}`\n")
 
 async def check_answer(c: Client, m: Message) -> None:
-    chat_data = c.get_chat_history(m.chat.id)
-    if chat_data.get('quiz_in_progress', False):
-        acertos = load_acertos()
+    acertos = load_acertos()
 
-        user_id = str(m.from_user.id)
-        user_answer = m.text.lower()
-        current_question = chat_data.get('current_question', {})
-        correct_answer = current_question.get('resposta_correta', '').lower()
+    user_id = str(m.from_user.id)
+    user_answer = m.text.lower()
+    current_question = chat_data.get('current_question', {})
+    correct_answer = current_question.get('resposta_correta', '').lower()
 
-        if user_answer == correct_answer:
-            username = m.from_user.username
+    if user_answer == correct_answer:
+        username = m.from_user.username
 
-            if user_id in acertos:
-                acertos[user_id]['acertos'] += 1
-            else:
-                acertos[user_id] = {'username': username, 'id': user_id, 'acertos': 1}
+        if user_id in acertos:
+            acertos[user_id]['acertos'] += 1
+        else:
+            acertos[user_id] = {'username': username, 'id': user_id, 'acertos': 1}
 
-            save_acertos(acertos)
-            await m.reply_text(f"Parabéns @{username}\nAcertos: {acertos[user_id]['acertos']}")
-            await ask_another_question(c, m)
+        save_acertos(acertos)
+        await m.reply_text(f"Parabéns @{username}\nAcertos: {acertos[user_id]['acertos']}")
+        await ask_another_question(c, m)
 
 @Client.on_message(filters.command(["rank"], prefixes=["?", "/"]))
 async def placar(c: Client, m: Message):
