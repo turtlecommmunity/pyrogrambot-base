@@ -6,7 +6,7 @@ from functools import wraps
 import random
 import json
 
-AWSWER_FILE = "Turtlecommunity/utils/database/info.json"
+AWSWER_FILE = "Turtlecommunity/utils/quiz.json"
 GROUPS_DB = "Turtlecommunity/utils/database/groups.json"
 DONO = "5498248090"
 
@@ -47,6 +47,7 @@ def save_grupo(user_id, chat_id, chat_title):
 async def quiz(c: Client, m: Message):
     if m.chat.type != ChatType.PRIVATE:
         try:
+            chat_data = {}
             with open('Turtlecommunity/utils/quiz.json', 'r', encoding='utf-8') as file:
                 questions = json.load(file)
 
@@ -63,6 +64,7 @@ async def quiz(c: Client, m: Message):
 async def ask_another_question(c: Client, m: Message) -> None:
     with open('Turtlecommunity/utils/quiz.json', 'r', encoding='utf-8') as file:
         questions = json.load(file)
+        chat_data = {}
 
         question = random.choice(questions)
         chat_data['current_question'] = {'resposta_correta': question['resposta']}
