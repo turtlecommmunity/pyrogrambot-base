@@ -46,7 +46,7 @@ def save_grupo(user_id, chat_id, chat_title):
 @Client.on_message(filters.command(["quiz"], prefixes=["?", "/"]))
 async def quiz(c: Client, m: Message):
     if m.chat.type != ChatType.PRIVATE:
-        chat_data = c.get_chat_data(m.chat.id)
+        chat_data = c.get_chat_history(m.chat.id)
         if not chat_data.get('quiz_in_progress', False):
             with open('quiz.json', 'r', encoding='utf-8') as file:
                 questions = json.load(file)
@@ -62,7 +62,7 @@ async def quiz(c: Client, m: Message):
         await m.reply_text("Só em grupos.")
 
 async def ask_another_question(c: Client, m: Message) -> None:
-    chat_data = c.get_chat_data(m.chat.id)
+    chat_data = c.get_chat_history(m.chat.id)
     if chat_data.get('quiz_in_progress', False):
         with open('quiz.json', 'r', encoding='utf-8') as file:
             questions = json.load(file)
@@ -72,7 +72,7 @@ async def ask_another_question(c: Client, m: Message) -> None:
         await m.reply_text(f"\n✏️ *Pergunta:* `{question['pergunta']}`\n")
 
 async def check_answer(c: Client, m: Message) -> None:
-    chat_data = c.get_chat_data(m.chat.id)
+    chat_data = c.get_chat_history(m.chat.id)
     if chat_data.get('quiz_in_progress', False):
         acertos = load_acertos()
 
