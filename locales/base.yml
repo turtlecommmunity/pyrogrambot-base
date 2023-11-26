@@ -1,0 +1,16 @@
+english-code-lang: "en"
+portuguese-code-lang: "pt"
+espanhol-code-lang: "es"
+ukraine-code-lang: "uk"
+
+english-lang: "🇺🇸 English"
+portuguese-lang: "🇧🇷 Português-Brasil"
+espanhol-lang: "🇪🇸 Espanõl"
+ukraine-lang: "🇺🇦 Ukraine"
+
+#help
+HELP_BASE: "Aqui está a ajuda para o modulo <b>{}</b>:\n\n"
+
+# Smartphone help
+help-name-smartphone: "Diversão"
+help-plugin-smartphone: "— Comandos para divertir seu chat.</b>\n\n• !quiz — Gera uma pergunta\n• /rank — Vê os 5 que mais acertaram as perguntas."
