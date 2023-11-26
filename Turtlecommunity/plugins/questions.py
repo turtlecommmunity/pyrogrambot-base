@@ -47,7 +47,7 @@ def save_grupo(user_id, chat_id, chat_title):
 async def quiz(c: Client, m: Message):
     if m.chat.type != ChatType.PRIVATE:
         try:
-            with open('quiz.json', 'r', encoding='utf-8') as file:
+            with open('Turtlecommunity/utils/quiz.json', 'r', encoding='utf-8') as file:
                 questions = json.load(file)
 
             question = random.choice(questions)
@@ -61,7 +61,7 @@ async def quiz(c: Client, m: Message):
         await m.reply_text("Só em grupos.")
 
 async def ask_another_question(c: Client, m: Message) -> None:
-    with open('quiz.json', 'r', encoding='utf-8') as file:
+    with open('Turtlecommunity/utils/quiz.json', 'r', encoding='utf-8') as file:
         questions = json.load(file)
 
         question = random.choice(questions)
@@ -109,7 +109,7 @@ async def placar(c: Client, m: Message):
 async def resp(c: Client, m: Message):
     if m.command:
         question_text = " ".join(m.command).lower()
-        with open('quiz.json', 'r', encoding='utf-8') as file:
+        with open('Turtlecommunity/utils/quiz.json', 'r', encoding='utf-8') as file:
             questions = json.load(file)
 
         for question in questions:
