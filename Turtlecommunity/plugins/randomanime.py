@@ -1,3 +1,5 @@
+import os
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from io import BytesIO
@@ -11,7 +13,8 @@ async def loli(c: Client, m: Message):
     if response.status_code == 200:
         photo_stream = BytesIO(response.content)
         photo_stream.name = "image.jpg"
-        await m.reply_photo(photo=photo_stream, caption='teste')
+        await m.reply_photo(photo=photo_stream, caption='Loli')
+        os.remove(photo_stream)
     else:
         await m.reply_text('erro')
 
@@ -23,7 +26,8 @@ async def megumin(c: Client, m: Message):
     if response.status_code == 200:
         photo_stream = BytesIO(response.content)
         photo_stream.name = "image.jpg"
-        await m.reply_photo(photo=photo_stream, caption='teste')
+        await m.reply_photo(photo=photo_stream, caption='Megumin')
+        os.remove(photo_stream)
     else:
         await m.reply_text('erro')
   
@@ -35,7 +39,8 @@ async def nezuko(c: Client, m: Message):
     if response.status_code == 200:
         photo_stream = BytesIO(response.content)
         photo_stream.name = "image.jpg"
-        await m.reply_photo(photo=photo_stream, caption='teste')
+        await m.reply_photo(photo=photo_stream, caption='Nezuko')
+        os.remove(photo_stream)
     else:
         await m.reply_text('erro')      
 
@@ -47,6 +52,7 @@ async def shina(c: Client, m: Message):
     if response.status_code == 200:
         photo_stream = BytesIO(response.content)
         photo_stream.name = "image.jpg"
-        await m.reply_photo(photo=photo_stream, caption='teste')
+        await m.reply_photo(photo=photo_stream, caption='Shina')
+        os.remove(photo_stream)
     else:
         await m.reply_text('erro')      
